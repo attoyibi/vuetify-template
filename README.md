@@ -1,2 +1,24 @@
-# vuetify-template
-project ini di buat untuk keperluan pelatihan vue di SMKN 8 Malang
+# project1_blog_with_vue
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
