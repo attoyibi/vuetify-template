@@ -1,0 +1,15 @@
+<script>
+import NavBar from "./components/NavBar.vue";
+import BodyComponent from "./components/BodyComponent.vue";
+export default {
+  name: "App",
+
+  data: () => ({
+    //
+  }),
+  components: {
+    NavBar,
+    BodyComponent,
+  },
+};
+</script>
