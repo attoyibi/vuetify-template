@@ -10,7 +10,8 @@
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <BodyComponent />
-        <CardList />
+
+        <FormPage />
 
         <!-- If using vue-router -->
         <router-view></router-view>
@@ -27,7 +28,8 @@
 <script>
 import BodyComponent from "./components/BodyComponent.vue";
 import NavBar from "./components/NavBar.vue";
-import CardList from "./components/CardList.vue";
+
+import FormPage from "./components/FormPage.vue";
 
 export default {
   data: () => ({
@@ -37,7 +39,8 @@ export default {
   components: {
     BodyComponent,
     NavBar,
-    CardList,
+
+    FormPage,
   },
 };
 </script>
