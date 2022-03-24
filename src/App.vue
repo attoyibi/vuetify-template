@@ -1,28 +1,32 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <p>Title : {{ this.title }}</p>
+    <p>Deskripsi : {{ this.deskripsi }}</p>
+    <input required type="text" ref="title" />
+    <input required type="text" ref="deskripsi" />
+    <button v-on:click="onSubmit">Submit</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data: function () {
+    return {
+      title: "Default Title",
+      deskripsi: "Default deskripsi",
+    };
+  },
+  methods: {
+    onSubmit() {
+      if (this.$refs.title.value !== "" && this.$refs.deskripsi.value !== "") {
+        console.log(this.$refs.title.value);
+        this.title = this.$refs.title.value;
+        this.deskripsi = this.$refs.deskripsi.value;
+        this.$refs.title.value = "";
+        this.$refs.deskripsi.value = "";
+      }
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
