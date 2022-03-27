@@ -1,15 +1,26 @@
 <template>
   <div>
+    {{ title }}
     <input type="text" id="nameField" ref="nameField" />
     <input type="text" id="ageField" ref="ageField" />
     <button v-on:click="writeData()">Submit</button>
+    <br />
+    <input type="text" id="deteleteField" ref="deleteField" />
+    <button v-on:click="deleteData()">Delete</button>
   </div>
 </template>
 
 <script>
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 // // TODO: Add SDKs for Firebase products that you want to use
 // // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,26 +43,39 @@ const db = getFirestore();
 //collection ref
 const colRef = collection(db, "books");
 
-//get collection data
-getDocs(colRef).then((snapshot) => {
-  let books = [];
-  snapshot.forEach((doc) => {
-    books.push({ ...doc.data(), id: doc.id });
-  });
-  console.log(books);
-});
-console.log(getDocs);
 export default {
   name: "App",
   components: {},
+  data: function () {
+    return {
+      title: "",
+    };
+  },
+  created() {
+    getDocs(colRef).then((snapshot) => {
+      let books = [];
+      snapshot.forEach((doc) => {
+        books.push({ ...doc.data(), id: doc.id });
+      });
+      this.title = books;
+      console.log("create", books);
+      return books;
+    });
+  },
   methods: {
-    writeData(e) {
+    writeData() {
       // e.preventDefault();
-      console.log(e);
-      // addDoc(colRef, {
-      //   title: e.title.value,
-      //   author: "addBookForm.author.value",
-      // }).then(() => {});
+      console.log(this.$refs.nameField.value);
+      addDoc(colRef, {
+        title: this.$refs.nameField.value,
+        author: this.$refs.ageField.value,
+      }).then(() => {});
+    },
+    deleteData() {
+      const docRef = doc(db, "books", this.$refs.deleteField.value);
+      deleteDoc(docRef).then(() => {
+        this.$refs.deleteField.value.reset();
+      });
     },
   },
 };
