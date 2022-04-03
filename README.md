@@ -30,11 +30,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Version
 
-gunakan 
-```
-npm install vuex@3 
-```
-untuk versi
+gunakan ```npm install vuex@3 ```untuk versi
 ```
 atau buat spesifik dengan npm install vuex@3.4.0(versi yang dipakai dalam project ini)
 ```
